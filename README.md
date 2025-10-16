@@ -36,6 +36,42 @@ Check out this demo on the asset library: https://godotengine.org/asset-library/
 - Pixel art visuals.
 - Sound effects and music.
 
+## New Design Patterns & Systems
+
+This project now implements three major design patterns and an enhanced parallax system:
+
+### 1. Decorator Pattern (Power-ups)
+- **SpeedBoost**: Increases movement speed by 50%
+- **JumpBoost**: Increases jump height by 40%
+- **ShieldPowerUp**: Provides temporary invincibility
+- Multiple power-ups can be active simultaneously
+- See `power_ups/` directory
+
+### 2. Factory Pattern (Game Object Creation)
+- **EnemyFactory**: Centralized enemy creation
+- **PowerUpFactory**: Spawn power-up collectibles
+- **CollectibleFactory**: Create coins and other collectibles
+- See `factories/` directory
+
+### 3. Strategy Pattern (Player Movement)
+- **NormalMovement**: Standard player physics
+- **PoweredUpMovement**: Enhanced speed and jump
+- **UnderwaterMovement**: Slower movement with modified gravity
+- Allows dynamic switching between movement behaviors
+- See `movement_strategies/` directory
+
+### 4. Enhanced Parallax Scrolling
+- Camera-tied parallax scrolling
+- Dynamic layer management
+- Optional auto-scroll
+- See `level/background/parallax_controller.gd`
+
+### Demo Scripts
+- `level/factory_spawner_demo.gd` - Test factory pattern (Press 1-5 to spawn objects)
+- `level/movement_strategy_demo.gd` - Test movement strategies (Press F1-F3 to switch)
+
+For detailed documentation, see [DESIGN_PATTERNS.md](DESIGN_PATTERNS.md)
+
 ## Screenshots
 
 ![2D Platformer](screenshots/platformer.webp)
