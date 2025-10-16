@@ -5,3 +5,10 @@ res://gui/theme.tres
 res://level/level.tscn
 res://level/background/parallax_background.tscn
 res://player/player.tscn
+res://game_splitscreen.tscn
+res://player/bullet.tscn
+res://gui/coins_counter.tscn
+res://music.tscn
+res://level/platforms/platform.tscn
+res://gui/pause_menu_singleplayer.tscn
+res://gui/pause_menu.tscn

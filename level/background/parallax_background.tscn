@@ -28,8 +28,8 @@ texture = ExtResource("2")
 centered = false
 
 [node name="BaseColor2" type="Sprite2D" parent="."]
-position = Vector2(417, 336.5)
-scale = Vector2(5.13333, 2.09063)
+position = Vector2(399.5, 338.5)
+scale = Vector2(1.74023, 0.663086)
 texture = ExtResource("2_ldf4p")
 
 [node name="Clouds" type="ParallaxLayer" parent="."]
@@ -117,6 +117,7 @@ position = Vector2(780, 0)
 
 [node name="Sprite1" type="Sprite2D" parent="Clouds/CloudGroup4"]
 position = Vector2(-293, 64)
+scale = Vector2(1, 1.01953)
 texture = ExtResource("5")
 centered = false
 

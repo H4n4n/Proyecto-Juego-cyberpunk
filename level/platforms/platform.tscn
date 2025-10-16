@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cky6e5nl0nyod"]
+[gd_scene load_steps=11 format=3 uid="uid://cky6e5nl0nyod"]
 
 [ext_resource type="Material" uid="uid://djwm5nol3d801" path="res://level/props/wind_sway.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://bxsmiv7k3fngt" path="res://level/platforms/moving_platform.webp" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bju7r7jqn8bqy" path="res://level/props/grass_2.webp" id="4"]
 [ext_resource type="Texture2D" uid="uid://upfcr5xg5fvh" path="res://level/props/grass_3.webp" id="5"]
 [ext_resource type="Texture2D" uid="uid://cqydct6vajobg" path="res://level/props/bush_1.webp" id="6"]
+[ext_resource type="Texture2D" uid="uid://j2qokbxlxpyq" path="res://level/props/bush_1.png" id="6_b4d34"]
 [ext_resource type="Texture2D" uid="uid://bu54lwrkcng25" path="res://level/props/vine_2.webp" id="7"]
 [ext_resource type="Texture2D" uid="uid://bvu4vgnc84r84" path="res://level/props/vine_1.webp" id="8"]
 
@@ -105,10 +106,10 @@ texture = ExtResource("4")
 [node name="B3" type="Sprite2D" parent="."]
 z_index = -2
 material = ExtResource("1")
-position = Vector2(-2, -58)
+position = Vector2(-3.13677, -70.6946)
 rotation = -3.14159
-scale = Vector2(1, -1)
-texture = ExtResource("6")
+scale = Vector2(0.16221, -0.097949)
+texture = ExtResource("6_b4d34")
 
 [node name="B4" type="Sprite2D" parent="."]
 z_index = -2
