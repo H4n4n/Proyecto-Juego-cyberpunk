@@ -95,7 +95,7 @@ func _unhandled_input(event: InputEvent) -> void:
 					var count = player.power_up_manager.active_power_ups.size()
 					print("Decorator: Active power-ups: ", count)
 					for power_up in player.power_up_manager.active_power_ups:
-						print("  - ", power_up.get_class(), " (", power_up.duration, "s remaining)")
+						print("  - ", power_up.get_power_up_name(), " (", power_up.duration, "s remaining)")
 				else:
 					print("No player or PowerUpManager found")
 

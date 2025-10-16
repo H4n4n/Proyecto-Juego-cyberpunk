@@ -14,3 +14,6 @@ func _on_remove() -> void:
 
 func get_modified_speed(base_speed: float) -> float:
 	return base_speed * SPEED_MULTIPLIER
+
+func get_power_up_name() -> String:
+	return "SpeedBoost"

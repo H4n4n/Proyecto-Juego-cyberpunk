@@ -12,3 +12,6 @@ func _on_remove() -> void:
 
 func has_shield() -> bool:
 	return active
+
+func get_power_up_name() -> String:
+	return "ShieldPowerUp"

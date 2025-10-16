@@ -14,3 +14,6 @@ func _on_remove() -> void:
 
 func get_modified_jump(base_jump: float) -> float:
 	return base_jump * JUMP_MULTIPLIER
+
+func get_power_up_name() -> String:
+	return "JumpBoost"

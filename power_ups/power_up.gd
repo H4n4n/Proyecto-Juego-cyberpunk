@@ -40,3 +40,7 @@ func get_modified_jump(base_jump: float) -> float:
 func has_shield() -> bool:
 	"""Override to provide shield protection."""
 	return false
+
+func get_power_up_name() -> String:
+	"""Return the name of this power-up type."""
+	return "PowerUp"
