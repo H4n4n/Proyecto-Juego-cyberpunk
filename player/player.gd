@@ -7,6 +7,10 @@ const ACCELERATION_SPEED = WALK_SPEED * 6.0
 const JUMP_VELOCITY = -725.0
 const TERMINAL_VELOCITY = 700
 
+# --- DESIGN PATTERNS ---
+var power_up_manager: PowerUpManager = null
+var movement_strategy: MovementStrategy = null
+
 # --- DASH CONSTANTS ---
 const DASH_SPEED = 800.0
 const DASH_TIME = 0.15 # seconds
@@ -49,6 +53,14 @@ var is_shooting := false
 func _ready():
 	if grapple_line:
 		grapple_line.visible = false  # Hide line at start
+	
+	# Initialize design patterns
+	power_up_manager = PowerUpManager.new(self)
+	add_child(power_up_manager)
+	movement_strategy = NormalMovement.new()
+	
+	# Add player to group for easy finding
+	add_to_group("players")
 
 func _physics_process(delta: float) -> void:
 	# --- DASH INPUT ---
@@ -130,9 +142,25 @@ func _physics_process(delta: float) -> void:
 			try_jump()
 		elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
 			velocity.y *= 0.6
-		velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
-		var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
-		velocity.x = move_toward(velocity.x, direction, ACCELERATION_SPEED * delta)
+		
+		# Apply movement strategy and power-up modifiers
+		var effective_gravity = gravity
+		if movement_strategy:
+			effective_gravity *= movement_strategy.get_gravity_multiplier()
+			movement_strategy.apply_movement_modifiers(self, delta)
+		
+		velocity.y = minf(TERMINAL_VELOCITY, velocity.y + effective_gravity * delta)
+		
+		# Get movement speed from strategy and power-ups
+		var walk_speed = WALK_SPEED
+		if movement_strategy:
+			walk_speed = movement_strategy.get_walk_speed()
+		if power_up_manager:
+			walk_speed = power_up_manager.get_modified_speed(walk_speed)
+		
+		var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * walk_speed
+		var acceleration = walk_speed * 6.0
+		velocity.x = move_toward(velocity.x, direction, acceleration * delta)
 		if not is_zero_approx(velocity.x):
 			if velocity.x > 0.0:
 				sprite.scale.x = 1.0
@@ -179,6 +207,13 @@ func get_new_animation(is_shooting := false) -> String:
 	return animation_new
 
 func try_jump() -> void:
+	# Get jump velocity from strategy and power-ups
+	var jump_velocity = JUMP_VELOCITY
+	if movement_strategy:
+		jump_velocity = movement_strategy.get_jump_velocity()
+	if power_up_manager:
+		jump_velocity = power_up_manager.get_modified_jump(jump_velocity)
+	
 	if is_on_floor():
 		jump_sound.pitch_scale = 1.0
 	elif _double_jump_charged:
@@ -187,5 +222,10 @@ func try_jump() -> void:
 		jump_sound.pitch_scale = 1.5
 	else:
 		return
-	velocity.y = JUMP_VELOCITY
+	velocity.y = jump_velocity
 	jump_sound.play()
+
+func set_movement_strategy(strategy: MovementStrategy) -> void:
+	"""Change the player's movement strategy."""
+	movement_strategy = strategy
+	print("Movement strategy changed to: ", strategy.get_strategy_name())
